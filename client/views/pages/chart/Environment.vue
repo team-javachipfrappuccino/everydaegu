@@ -310,7 +310,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
   }
   
   .chart-column2 {
-    width: 100%;
+    width: 97%;
     padding-top: 30px;
     padding-left: 100px;
   }
