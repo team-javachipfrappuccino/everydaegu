@@ -1,11 +1,11 @@
 <template>
     <div class="chart-container-wrapper">
       <div class="chart-column" style="padding-left: 100px;">
-        <h2 style="padding-left: 200px; padding-top: 30px;">대기 수질 환경오염배출사업장 현황</h2>
+        <h2 style="padding-left: 300px; padding-top: 30px;">대기 수질 환경오염배출사업장 현황</h2>
         <div id="chartdiv1" class="chart-container"></div>
       </div>
       <div class="chart-column" style="padding-right: 100px;">
-        <h2 style="padding-left: 200px; padding-top: 30px;">2023 월별 폐기물 처리량</h2>
+        <h2 style="padding-left: 300px; padding-top: 30px;">2023 월별 폐기물 처리량</h2>
         <div id="chartdiv2" class="chart-container"></div>
         <p style="text-align: right; padding-right: 90px; ">처리차량(대)</p>
       </div>
