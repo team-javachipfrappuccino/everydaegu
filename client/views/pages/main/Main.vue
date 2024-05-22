@@ -98,6 +98,7 @@
                 </div>
                 <div>* 높을수록 위험</div>
             </section>
+            </section>
 </template>
 
 <script>
