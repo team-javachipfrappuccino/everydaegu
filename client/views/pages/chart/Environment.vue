@@ -18,7 +18,7 @@
             <option v-for="month in months" :key="month">{{ month }}</option>
           </select>
           <button @click="showTrashCanStatus">대구 쓰레기통 설치 지역</button>
-          <p>반입차량(대)</p>
+          <p style="text-align: right;">반입차량(대)</p>
         </div>
       </div>
       <div id="chartdiv3" class="chart-container"></div>
