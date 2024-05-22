@@ -68,36 +68,36 @@
                 <button @click="filterEnvironment('달서구')">달서구</button>
                 <button @click="filterEnvironment('달성군')">달성군</button>
             </section>
-                <button id="addBtn" @click="clearMap()">초기화</button>
-            
+            <button id="addBtn" @click="clearMap()">초기화</button>
+
         </div>
         <div class="mapSection" ref="map"></div>
     </section>
     <!-- 안전(안전지수) 버튼을 누르면 표시되는 범례 -->
     <section v-if="sectionOption === 'safety' && safetyDistrict" class="legend">
-                <h3>안전지수 범례</h3>
-                <div class="legend-item">
-                    <span class="legend-color" style="background-color: #1F77B4;"></span>
-                    <span class="legend-label">1단계</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-color" style="background-color: #2CA02C;"></span>
-                    <span class="legend-label">2단계</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-color" style="background-color: #FFD700;"></span>
-                    <span class="legend-label">3단계</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-color" style="background-color: #FFA500;"></span>
-                    <span class="legend-label">4단계</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-color" style="background-color: #FF0000;"></span>
-                    <span class="legend-label">5단계</span>
-                </div>
-                <div>* 높을수록 위험</div>
-            </section>
+        <h3>안전지수 범례</h3>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #1F77B4;"></span>
+            <span class="legend-label">1단계</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #2CA02C;"></span>
+            <span class="legend-label">2단계</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #FFD700;"></span>
+            <span class="legend-label">3단계</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #FFA500;"></span>
+            <span class="legend-label">4단계</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #FF0000;"></span>
+            <span class="legend-label">5단계</span>
+        </div>
+        <div>* 높을수록 위험</div>
+    </section>
 </template>
 
 <script>
@@ -129,7 +129,7 @@ export default {
         toggleCircle(itm) {
             console.log("선택한 값= ", itm);
             this.sectionOption = itm;
-            
+
         },
 
         filterPopulation(district) {
@@ -138,7 +138,7 @@ export default {
 
             // markers 배열에서 선택된 지역의 정보 찾기
             const selectedMarker = vm.markers.find(marker => marker.title === district);
-            
+
             // 선택된 지역의 정보가 없으면 종료
             if (!selectedMarker) {
                 console.error(`"${district}" 지역의 정보를 찾을 수 없습니다.`);
@@ -147,6 +147,17 @@ export default {
 
             // 선택된 지역의 위치 정보
             const position = selectedMarker.position;
+
+            // 원을 저장할 변수 추가
+            if (!vm.circles) {
+                vm.circles = {};
+            }
+
+            // 이미 원이 존재하면 새로 그리지 않음
+            if (vm.circles[district]) {
+                console.log(`${district} 지역에 이미 원이 그려져 있습니다.`);
+                return;
+            }
 
             // 원 그리기
             const circleOptions = {
@@ -159,9 +170,12 @@ export default {
                 fillOpacity: 0.5
             };
             const circle = new kakao.maps.Circle(circleOptions);
-            
+
+            // 원 저장
+            vm.circles[district] = circle;
+
             // 원에 클릭 이벤트 추가
-            kakao.maps.event.addListener(circle, 'click', function() {
+            kakao.maps.event.addListener(circle, 'click', function () {
                 // 클릭한 원의 내용 표시
                 const infoWindow = new kakao.maps.InfoWindow({
                     position: position,
@@ -170,9 +184,9 @@ export default {
                 infoWindow.open(vm.mapInstance);
             });
 
-            circle.setMap(vm.mapInstance); // 지도에 원 표시
+            // 지도에 원을 추가
+            circle.setMap(vm.mapInstance);
         },
-
         filterDistrict(district) {
             console.log("필터링할 구/군: ", district);
             const vm = this;
@@ -184,12 +198,12 @@ export default {
                 },
                 data: { district: district },
             })
-                .then(function(response) {
+                .then(function (response) {
                     console.log("welfareData - response :", response.data);
                     vm.dataList = response.data.filter(item => item.public_center_add === district);
                     vm.showMarkers();
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log("welfareData - error :", error);
                     alert("공공시설 데이터 조회에 오류가 발생했습니다.");
                 });
@@ -198,45 +212,47 @@ export default {
         filterSafety(district) {
             console.log("필터링할 구/군: ", district);
             this.safetyDistrict = district;
-            
+
         },
 
         filterSafetyCategory(category) {
-        console.log("필터링할 안전 카테고리: ", category);
-        const vm = this;
-        axios({
-            url: "/safetyData.json",
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: { district: this.safetyDistrict, category: category },
-        })
-        .then(function(response) {
-            console.log("safetyData - response :", response.data);
-            
+            console.log("필터링할 안전 카테고리: ", category);
+            const vm = this;
+            axios({
+                url: "/safetyData.json",
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: { district: this.safetyDistrict, category: category },
+            })
+                .then(function (response) {
+                    console.log("safetyData - response :", response.data);
 
-            const filteredData = response.data.filter(item => item.safety_region === vm.safetyDistrict);
 
-            filteredData.forEach(safetyData => {
-                const position = new kakao.maps.LatLng(safetyData.safety_latitude, safetyData.safety_longitude);
-                const circleOptions = {
-                    center: position,
-                    radius: 1500,
-                    strokeWeight: 1,
-                    strokeColor: '#333',
-                    strokeOpacity: 0.7,
-                    fillColor: vm.getSafetyColor(safetyData[category]),
-                    fillOpacity: 0.5
-                };
-                const circle = new kakao.maps.Circle(circleOptions);
+                    const filteredData = response.data.filter(item => item.safety_region === vm.safetyDistrict);
 
-                // 클릭 이벤트 리스너 추가
-                kakao.maps.event.addListener(circle, 'click', function() {
-                    // 클릭한 원의 내용 표시
-                    const infoWindow = new kakao.maps.InfoWindow({
-                        position: position,
-                        content: `<div style="padding: 10px; margin-bottom: 15px; text-align: center;">
+
+
+                    filteredData.forEach(safetyData => {
+                        const position = new kakao.maps.LatLng(safetyData.safety_latitude, safetyData.safety_longitude);
+                        const circleOptions = {
+                            center: position,
+                            radius: 1500,
+                            strokeWeight: 1,
+                            strokeColor: '#333',
+                            strokeOpacity: 0.7,
+                            fillColor: vm.getSafetyColor(safetyData[category]),
+                            fillOpacity: 0.5
+                        };
+                        const circle = new kakao.maps.Circle(circleOptions);
+
+                        // 클릭 이벤트 리스너 추가
+                        kakao.maps.event.addListener(circle, 'click', function () {
+                            // 클릭한 원의 내용 표시
+                            const infoWindow = new kakao.maps.InfoWindow({
+                                position: position,
+                                content: `<div style="padding: 10px; margin-bottom: 15px; text-align: center;">
                                 <strong>${safetyData.safety_region}</strong>
                                 <hr>
                                 <ul>
@@ -244,57 +260,57 @@ export default {
                                     <li>경찰서 수 : ${safetyData.safety_police}</li>
                                 </ul>
                               </div>`,
+                            });
+                            infoWindow.open(vm.mapInstance);
+                        });
+
+                        circle.setMap(vm.mapInstance);
+                        vm.circles.push({ circle });
                     });
-                    infoWindow.open(vm.mapInstance);
+                })
+                .catch(function (error) {
+                    console.log("safetyData - error :", error);
+                    alert("안전 카테고리 데이터 조회에 오류가 발생했습니다.");
                 });
-
-                circle.setMap(vm.mapInstance);
-                vm.circles.push({ circle });
-            });
-        })
-        .catch(function(error) {
-            console.log("safetyData - error :", error);
-            alert("안전 카테고리 데이터 조회에 오류가 발생했습니다.");
-        });    
-    },
-
-    filterEnvironment(district) {
-    console.log("필터링할 지역: ", district);
-    const vm = this;
-    axios({
-        url: "/environmentData.json",
-        method: "post",
-        headers: {
-            "Content-Type": "application/json",
         },
-        data: { district: district },
-    })
-    .then(function(response) {
-        console.log("environmentData - response :", response.data);
 
-        // 지역에 해당하는 데이터만 필터링
-        const filteredData = response.data.filter(item => item.env_region === district);
+        filterEnvironment(district) {
+            console.log("필터링할 지역: ", district);
+            const vm = this;
+            axios({
+                url: "/environmentData.json",
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: { district: district },
+            })
+                .then(function (response) {
+                    console.log("environmentData - response :", response.data);
 
-        // 필터링된 데이터를 이용하여 지도에 원 그리기
-        filteredData.forEach(envData => {
-            const position = new kakao.maps.LatLng(envData.env_latitude, envData.env_longitude);
-            const circleOptions = {
-                center: position,
-                radius: 1500, // 반지름 설정
-                strokeWeight: 1,
-                strokeColor: '#333',
-                strokeOpacity: 0.7,
-                fillColor: '#1F77B4', // 파랑색
-                fillOpacity: 0.5
-            };
-            const circle = new kakao.maps.Circle(circleOptions);
+                    // 지역에 해당하는 데이터만 필터링
+                    const filteredData = response.data.filter(item => item.env_region === district);
 
-            // 클릭 이벤트 리스너 추가
-            kakao.maps.event.addListener(circle, 'click', function() {
-                // 클릭한 원의 내용 표시
-                const infoWindow = new kakao.maps.InfoWindow({
-                    position: position,
-                    content: `<div style="padding: 10px; margin-bottom: 15px; text-align: center;">
+                    // 필터링된 데이터를 이용하여 지도에 원 그리기
+                    filteredData.forEach(envData => {
+                        const position = new kakao.maps.LatLng(envData.env_latitude, envData.env_longitude);
+                        const circleOptions = {
+                            center: position,
+                            radius: 1500, // 반지름 설정
+                            strokeWeight: 1,
+                            strokeColor: '#333',
+                            strokeOpacity: 0.7,
+                            fillColor: '#1F77B4', // 파랑색
+                            fillOpacity: 0.5
+                        };
+                        const circle = new kakao.maps.Circle(circleOptions);
+
+                        // 클릭 이벤트 리스너 추가
+                        kakao.maps.event.addListener(circle, 'click', function () {
+                            // 클릭한 원의 내용 표시
+                            const infoWindow = new kakao.maps.InfoWindow({
+                                position: position,
+                                content: `<div style="padding: 10px; margin-bottom: 15px; text-align: center;">
                             <strong>${envData.env_region}</strong>
                             <hr>
                             <ul>
@@ -302,25 +318,19 @@ export default {
                                 <li>폐기물 배출량(연간/톤): ${envData.env_waste}</li>
                             </ul>
                           </div>`,
+                            });
+                            infoWindow.open(vm.mapInstance);
+                        });
+
+                        circle.setMap(vm.mapInstance); // 지도에 원 표시
+                        vm.circles.push({ circle }); // 원을 circles 배열에 추가
+                    });
+                })
+                .catch(function (error) {
+                    console.log("environmentData - error :", error);
+                    alert("환경 데이터 조회에 오류가 발생했습니다.");
                 });
-                infoWindow.open(vm.mapInstance);
-            });
-
-            circle.setMap(vm.mapInstance); // 지도에 원 표시
-            vm.circles.push({ circle }); // 원을 circles 배열에 추가
-        });
-    })
-    .catch(function(error) {
-        console.log("environmentData - error :", error);
-        alert("환경 데이터 조회에 오류가 발생했습니다.");
-    });
-},
-
-        
-
-
-
-
+        },
 
         getSafetyColor(riskIndex) {
             // 위험지수에 따른 색상 결정
@@ -359,8 +369,8 @@ export default {
         clearMap() {
             location.reload();
         },
-      
-        
+
+
     },
 
     mounted() {
@@ -376,7 +386,7 @@ export default {
         } else {
             console.error("Kakao Maps API가 로드되지 않았습니다.");
         }
-}
+    }
 };
 </script>
 
@@ -391,11 +401,11 @@ export default {
     gap: 8px;
 }
 
-.sidebar { 
+.sidebar {
     grid-column: 1 / 2;
 }
 
-.mapSection { 
+.mapSection {
     grid-column: 2 / 3;
     height: 100%;
 }
@@ -414,7 +424,8 @@ summary {
     margin-bottom: 1rem;
 }
 
-.main-button, .safety-categories {
+.main-button,
+.safety-categories {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
@@ -422,7 +433,8 @@ summary {
     border-bottom: 1px solid #3333;
 }
 
-.main-button button, .safety-categories button {
+.main-button button,
+.safety-categories button {
     width: 100%;
     padding: 1rem 0;
     border: 1px solid #3333;
@@ -434,9 +446,9 @@ summary {
 
 .legend {
     position: absolute;
-    top: 70px; 
+    top: 70px;
     right: 20px;
-    z-index: 1; 
+    z-index: 1;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
