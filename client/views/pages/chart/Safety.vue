@@ -2,12 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h1>경찰서</h1>
+                <h1>경찰서</h1><br>
                 <h2>경찰관서별 지역경찰 현황</h2>
                 <div id="police" class="policediv"></div>
             </div>
             <div class="column">
-                <h1>소방서</h1>
+                <h1>소방서</h1><br>
                 <h2>소방관 1인당 관할면적 현황(㎢)</h2>
                 <div id="fire" class="firediv"></div>
             </div>
@@ -898,14 +898,17 @@ export default {
     width: 94%;
     height: 250px;
 }
+.policediv, .crimediv, .firediv, .accidentdiv {
+    margin-top: 20px;
+}
 .casualtydiv{
     width: 65%;
-    height: 150px;
+    height: 180px;
     margin-left: 20px;
 }
 .safediv{
     width: 65%;
-    height: 150px;
+    height: 180px;
 }
 .textbox1{
     width: 20%; 
