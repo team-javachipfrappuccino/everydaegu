@@ -1,0 +1,33 @@
+-- create test SCHEMA(mariaDB)
+CREATE SCHEMA test DEFAULT CHARACTER SET utf8mb4;
+
+-- use test SCHEMA(mariaDB)
+use test;
+
+-- create product table(mariaDB)
+CREATE TABLE product
+(
+	product_index INT PRIMARY KEY AUTO_INCREMENT,
+	product_name VARCHAR(50),
+	product_category VARCHAR(50),
+	product_price INT,
+	product_explan TEXT,
+	product_writer VARCHAR(50),
+	product_date DATE
+) DEFAULT CHARACTER SET utf8mb4;
+
+-- create product_order table(mariaDB)
+CREATE TABLE product_order
+(
+	order_index INT,
+    order_product_number INT,
+    order_product_name VARCHAR(50),
+    order_product_category VARCHAR(50),
+    order_product_temperature VARCHAR(50),
+    order_amount INT,
+    order_price INT,
+    order_user VARCHAR(50),
+    order_date DATE,
+    order_state VARCHAR(50),
+    PRIMARY KEY(order_index, order_product_number)
+) DEFAULT CHARACTER SET utf8mb4;
