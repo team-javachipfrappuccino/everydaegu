@@ -1,22 +1,24 @@
 <template>
     <div class="chart-container-wrapper">
       <div class="chart-column" style="padding-left: 100px;">
-        <h2 style="padding-left: 300px; padding-top: 30px;">대기 수질 환경오염배출사업장 현황</h2>
+        <h2 style="padding-left: 200px; padding-top: 30px;">대기 수질 환경오염배출사업장 현황</h2>
         <div id="chartdiv1" class="chart-container"></div>
       </div>
       <div class="chart-column" style="padding-right: 100px;">
-        <h2 style="padding-left: 300px; padding-top: 30px;">2023 월별 폐기물 처리량</h2>
+        <h2 style="padding-left: 200px; padding-top: 30px;">2023 월별 폐기물 처리량</h2>
         <div id="chartdiv2" class="chart-container"></div>
+        <p style="text-align: right; padding-right: 90px; ">처리차량(대)</p>
       </div>
     </div>
     <div class="chart-column2">
-      <h2 style="padding-left: 890px; padding-top: 30px;">연도별 폐기물 반입현황</h2>
+      <h2 style="padding-left: 750px; padding-top: 30px;">연도별 폐기물 반입현황</h2>
       <div class="dropdown-wrapper">
         <div class="dropdown-and-amount">
           <select @change="updateChart" v-model="selectedMonth">
             <option v-for="month in months" :key="month">{{ month }}</option>
           </select>
           <button @click="showTrashCanStatus">대구 쓰레기통 설치 지역</button>
+          <p>반입차량(대)</p>
         </div>
       </div>
       <div id="chartdiv3" class="chart-container"></div>
