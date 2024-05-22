@@ -47,7 +47,7 @@
                 <h2 style="margin-top: 12px;">대구 외국인 인구변화</h2><br>
                 <div class="flex-container">
                 <div class = "textbox2">
-                    </div>
+                    fff</div>
                 <div id="chartdiv8" class="chartdiv"></div>
                 </div>
             </div>
