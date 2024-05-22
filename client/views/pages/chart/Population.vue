@@ -290,7 +290,6 @@ export default {
 
             root._logo.dispose();
         },
-
         createLineChart(chartDivId, chartData) {
             let root = am5.Root.new(chartDivId);
 
@@ -490,6 +489,84 @@ export default {
             series.appear(1000, 100);
             root._logo.dispose();
         },
+        createdensityChart(chartDivId, chartData, valueField) {
+                    let root = am5.Root.new(chartDivId);
+
+                    root.setThemes([am5themes_Animated.new(root)]);
+
+                    let chart = root.container.children.push(am5xy.XYChart.new(root, {
+                        panX: false,
+                        panY: false,
+                        wheelX: "panX",
+                        wheelY: "zoomX",
+                        paddingLeft: 0,
+                        layout: root.verticalLayout
+                    }));
+
+                    let legend = chart.children.push(am5.Legend.new(root, {
+                        centerX: am5.p50,
+                        x: am5.p50
+                    }));
+
+                    let yRenderer = am5xy.AxisRendererY.new(root, {
+                        cellStartLocation: 0.1,
+                        cellEndLocation: 0.9,
+                        minorGridEnabled: true
+                    });
+
+                    yRenderer.grid.template.set("location", 1);
+
+                    let yAxis = chart.yAxes.push(
+                        am5xy.CategoryAxis.new(root, {
+                            categoryField: "year",
+                            renderer: yRenderer,
+                            tooltip: am5.Tooltip.new(root, {})
+                        })
+                    );
+
+                    yAxis.data.setAll(chartData);
+
+                    let xAxis = chart.xAxes.push(
+                        am5xy.ValueAxis.new(root, {
+                            min: 0,
+                            renderer: am5xy.AxisRendererX.new(root, {
+                                strokeOpacity: 0.1,
+                                minGridDistance: 70
+                            })
+                        })
+                    );
+
+                    let series1 = chart.series.push(am5xy.ColumnSeries.new(root, {
+                        name: "인구밀도",
+                        xAxis: xAxis,
+                        yAxis: yAxis,
+                        valueXField: valueField,
+                        categoryYField: "year",
+                        sequencedInterpolation: true,
+                        tooltip: am5.Tooltip.new(root, {
+                            pointerOrientation: "horizontal",
+                            labelText: "[bold]{name}[/]\n{categoryY}: {valueX}"
+                        })
+                    }));
+
+                    series1.columns.template.setAll({
+                        height: am5.percent(70)
+                    });
+
+                    legend.data.setAll(chart.series.values);
+
+                    let cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+                        behavior: "zoomY"
+                    }));
+                    cursor.lineX.set("visible", false);
+
+                    series1.data.setAll(chartData);
+
+                    series1.appear();
+                    chart.appear(1000, 100);
+
+                    root._logo.dispose();
+                }
         
     },
     mounted() {
