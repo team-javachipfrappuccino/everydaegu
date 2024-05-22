@@ -138,7 +138,7 @@ export default {
 
             // markers 배열에서 선택된 지역의 정보 찾기
             const selectedMarker = vm.markers.find(marker => marker.title === district);
-            
+
             // 선택된 지역의 정보가 없으면 종료
             if (!selectedMarker) {
                 console.error(`"${district}" 지역의 정보를 찾을 수 없습니다.`);
@@ -147,6 +147,17 @@ export default {
 
             // 선택된 지역의 위치 정보
             const position = selectedMarker.position;
+
+            // 원을 저장할 변수 추가
+            if (!vm.circles) {
+                vm.circles = {};
+            }
+
+            // 이미 원이 존재하면 새로 그리지 않음
+            if (vm.circles[district]) {
+                console.log(`${district} 지역에 이미 원이 그려져 있습니다.`);
+                return;
+            }
 
             // 원 그리기
             const circleOptions = {
@@ -159,7 +170,10 @@ export default {
                 fillOpacity: 0.5
             };
             const circle = new kakao.maps.Circle(circleOptions);
-            
+
+            // 원 저장
+            vm.circles[district] = circle;
+
             // 원에 클릭 이벤트 추가
             kakao.maps.event.addListener(circle, 'click', function() {
                 // 클릭한 원의 내용 표시
@@ -170,9 +184,9 @@ export default {
                 infoWindow.open(vm.mapInstance);
             });
 
-            circle.setMap(vm.mapInstance); // 지도에 원 표시
+            // 지도에 원을 추가
+            circle.setMap(vm.mapInstance);
         },
-
         filterDistrict(district) {
             console.log("필터링할 구/군: ", district);
             const vm = this;
@@ -217,6 +231,8 @@ export default {
             
 
             const filteredData = response.data.filter(item => item.safety_region === vm.safetyDistrict);
+
+            
 
             filteredData.forEach(safetyData => {
                 const position = new kakao.maps.LatLng(safetyData.safety_latitude, safetyData.safety_longitude);
