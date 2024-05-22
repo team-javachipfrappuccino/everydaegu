@@ -118,6 +118,7 @@ export default {
             });
         },
 
+        // crime
         CrimeIncrease: function () {
             const vm = this;
             axios({
@@ -256,9 +257,6 @@ export default {
                 alert("오류 발생: " + error.message);
             });
         },
-
-
-
         
         policeChart: function() {
             const vm = this; // 현재 Vue 인스턴스를 참조하는 변수
@@ -318,8 +316,6 @@ export default {
                     paddingRight: 0 // 레이블 간 여백 설정
                 });
 
-
-
                 xAxis.data.setAll(data);
 
                 var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
@@ -367,7 +363,6 @@ export default {
                             })
                         });
                     });
-
                     legend.data.push(series);
                 }
 
@@ -415,7 +410,6 @@ export default {
                     "2022": item["2022"]
                 }));
 
-
                 // Create axes
                 var xRenderer = am5xy.AxisRendererX.new(root, {
                     cellStartLocation: 0.1,
@@ -423,8 +417,6 @@ export default {
                     minGridDistance: 30,
                     minorGridEnabled: true
                 });
-
-                
 
                 var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
                     categoryField: "경찰서",
@@ -436,7 +428,6 @@ export default {
                     location: 1
                 });
 
-                
                 xAxis.data.setAll(data);
 
                 var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
@@ -463,9 +454,6 @@ export default {
                     });
 
                     series.data.setAll(data);
-
-                    
-
                     series.appear();
 
                     series.bullets.push(function () {
@@ -480,9 +468,7 @@ export default {
                             })
                         });
                     });
-
                     legend.data.push(series);
-
                 }
 
                 makeSeries("2021", "2021");
@@ -522,7 +508,6 @@ export default {
                 // Add cursor
                 var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
                 cursor.lineY.set("visible", false);
-
 
                 // Create axes
                 var xRenderer = am5xy.AxisRendererX.new(root, { 
@@ -575,7 +560,6 @@ export default {
                     return chart.get("colors").getIndex(series.columns.indexOf(target));
                 });
 
-
                 // Set data
                 var data = vm.fireData.map(item => ({
                     소방서: item.소방서,
@@ -584,7 +568,6 @@ export default {
 
                 xAxis.data.setAll(data);
                 series.data.setAll(data);
-
 
                 // Make stuff animate on load
                 series.appear(1000);
@@ -630,7 +613,6 @@ export default {
                     "2022": item["2022"]
                 }));
 
-
                 // Create axes
                 var xRenderer = am5xy.AxisRendererX.new(root, {
                     cellStartLocation: 0.1,
@@ -638,7 +620,6 @@ export default {
                     minGridDistance: 30,
                     minorGridEnabled: true
                 });
-
 
                 var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
                     categoryField: "소방서",
@@ -678,7 +659,6 @@ export default {
 
                     series.data.setAll(data);
 
-
                     series.appear();
 
                     series.bullets.push(function () {
@@ -711,17 +691,13 @@ export default {
             const vm = this;
 
             am5.ready(function() {
-
-
                 // Create root element
                 var root = am5.Root.new("safety");
-
 
                 // Set themes
                 root.setThemes([
                     am5themes_Animated.new(root)
                 ]);
-
 
                 // Create chart
                 var chart = root.container.children.push(am5xy.XYChart.new(root, {
@@ -733,15 +709,11 @@ export default {
                     paddingLeft: 0
                 }));
 
-
                 // Add cursor
-                // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
                 var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
                 cursor.lineY.set("visible", false);
 
-
                 // Create axes
-                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
                 var xRenderer = am5xy.AxisRendererX.new(root, {
                     minGridDistance:15,
                     minorGridEnabled: true
@@ -753,7 +725,6 @@ export default {
                     centerX: am5.p50
                 });
 
-                
                 xRenderer.grid.template.setAll({
                     visible: false,
                     location: 1
@@ -771,9 +742,7 @@ export default {
                     renderer: am5xy.AxisRendererY.new(root, {})
                 }));
 
-
                 // Create series
-                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
                 var series = chart.series.push(am5xy.ColumnSeries.new(root, {
                     xAxis: xAxis,
                     yAxis: yAxis,
@@ -799,7 +768,6 @@ export default {
                     })
                 })
 
-
                 // Set data
                 var data = vm.safetyData.map(item => ({
                     기관명: item.기관명,
@@ -813,9 +781,7 @@ export default {
                 yAxis.set("strictMinMaxStep", true);
                 yAxis.set("baseInterval", { count: 5 });
 
-
                 // Make stuff animate on load
-                // https://www.amcharts.com/docs/v5/concepts/animations/
                 series.appear(1000);
                 chart.appear(1000, 100);
 
@@ -866,16 +832,12 @@ export default {
             }));
 
             series.data.setAll(data);
-
             series.appear(1000, 100);
 
-            
             root._logo.dispose(); //amChart 로고 삭제
 
             }); // end am5.ready()
-        }
-
-        
+        }        
     },
 };
 
@@ -921,7 +883,6 @@ export default {
 .column h1, .column h2 {
   text-align: left;
 }
-
 .textbox1, .textbox2 {
     margin-left: 20px;
     word-wrap: break-word; /* 긴 단어 줄바꿈 */
