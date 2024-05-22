@@ -36,24 +36,22 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h1 style="margin-top: 12px;">대구 인구밀도</h1><br>
+                <h1 style="margin-top: 12px;">대구 인구밀도</h1>
                 <div class="flex-container">
-                    <div class = "textbox1">
-                        국토교통부 "지적통계"의 행정구역별 국토면적을 이용하여 업데이트 하였음</div>
-                <div id="chartdiv7" class="chartdiv"></div>
+                    <div class="textbox1">국토교통부 "지적통계"의 행정구역별 국토면적을 이용하여 업데이트 하였음</div>
+                    <div id="chartdiv7" class="chartdiv"></div>
                 </div>
             </div>
             <div class="column">
-                <h2 style="margin-top: 12px;">대구 외국인 인구변화</h2><br>
+                <h2 style="margin-top: 12px;">대구 외국인 인구변화</h2>
                 <div class="flex-container">
-                <div class = "textbox2">
-                    fff</div>
-                <div id="chartdiv8" class="chartdiv"></div>
+                    <div class="textbox2">
+                        ffff</div>
+                    <div id="chartdiv8" class="chartdiv"></div>
                 </div>
             </div>
         </div>
     </div>
-    <hr>
 </template>
 
 <script>
@@ -567,7 +565,7 @@ export default {
             chart.appear(1000, 100);
 
             root._logo.dispose();
-        }
+        },
         
     },
     mounted() {
