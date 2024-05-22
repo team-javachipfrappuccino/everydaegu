@@ -5,7 +5,7 @@
         <div id="chartdiv1" class="chart-container"></div>
       </div>
       <div class="chart-column" style="padding-right: 100px;">
-        <h2 style="padding-left: 300px; padding-top: 30px;">2023 월별 폐기물 처리량dddddd</h2>
+        <h2 style="padding-left: 300px; padding-top: 30px;">2023 월별 폐기물 처리량</h2>
         <div id="chartdiv2" class="chart-container"></div>
       </div>
     </div>
@@ -137,6 +137,8 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
   
         series1.data.setAll(data);
         series1.appear(1000, 100);
+
+        root1._logo.dispose();
       },
   
       createBarChart(data) {
@@ -208,6 +210,8 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
   
         series2.appear(1000);
         chart2.appear(1000, 100);
+
+        root2._logo.dispose();
       },
   
       createCarryInChart(data) {
@@ -278,6 +282,8 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
         series3_3.data.setAll(data);
   
         chart3.appear(1000, 100);
+
+        root3._logo.dispose();
       }
     },
     mounted() {
