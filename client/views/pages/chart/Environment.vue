@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="chart-column2">
-      <h2 style="padding-left: 750px; padding-top: 30px;">연도별 폐기물 반입현황</h2>
+      <h2 style="padding-left: 800px; padding-top: 30px;">연도별 폐기물 반입현황</h2>
       <div class="dropdown-wrapper">
         <div class="dropdown-and-amount">
           <select @change="updateChart" v-model="selectedMonth">
@@ -310,7 +310,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
   }
   
   .chart-column2 {
-    width: 90%;
+    width: 97%;
     padding-top: 30px;
     padding-left: 100px;
   }
