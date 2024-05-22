@@ -5,7 +5,7 @@
         <div id="chartdiv1" class="chart-container"></div>
       </div>
       <div class="chart-column" style="padding-right: 100px;">
-        <h2 style="padding-left: 300px; padding-top: 30px;">2023 월별 폐기물 처리량</h2>
+        <h2 style="padding-left: 300px; padding-top: 30px;">2023 월별 폐기물 처리량dddddd</h2>
         <div id="chartdiv2" class="chart-container"></div>
       </div>
     </div>
