@@ -335,14 +335,13 @@ export default {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
 }
 
 .chart-title-center {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .dropdown-wrapper {
@@ -365,7 +364,7 @@ export default {
   margin-left: 20px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #edf2f8;
+  background-color: #f3f3f3;
   color: rgb(44, 41, 41);
   border: 1px solid #b6afaf;
   border-radius: 5px;
