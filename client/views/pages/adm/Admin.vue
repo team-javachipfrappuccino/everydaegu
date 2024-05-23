@@ -15,9 +15,14 @@
 
             <div class=" admin-area-box">
                 <p class="pd30">미리보기</p>
-    
-                <div v-if="fileReadData.length > 0" class="table-section pb30" >
-                    <table class="file-data-list">
+
+                <div v-if="fileReadData.length > 0" class="table-section pb30 pl30 pr30">
+                    <table class="file-data-list  ">
+                        <colgroup>
+                            <col style="width: 30% ;">
+                            <col style="width: 30% ;">
+                            <col style="width: 30% ;">
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th v-for="(column, index) in fileReadData[0]" :key="index">{{ column }}</th>
@@ -55,20 +60,20 @@ export default {
 
             const reader = new FileReader();
             reader.onload = (e) => {
-            const workbook = XLSX.read(e.target.result, { type: 'string' });
+                const workbook = XLSX.read(e.target.result, { type: 'string' });
 
-            const firstSheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[firstSheetName];
-            const jsonSheet = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                const jsonSheet = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-            this.fileReadData = jsonSheet;
-            this.fileReadData.name = "환경";
-        };
-        reader.readAsText(file, 'UTF-8');
-    },
-    selectFrom(){
-        console.log("엑셀 값을 알고싶다", this.fileReadData);
-    },
+                this.fileReadData = jsonSheet;
+                this.fileReadData.name = "환경";
+            };
+            reader.readAsText(file, 'UTF-8');
+        },
+        selectFrom() {
+            console.log("엑셀 값을 알고싶다", this.fileReadData);
+        },
 
 
 
@@ -91,18 +96,18 @@ export default {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: { fileReadData: vm.fileReadData ,datasetName:vm.datasetName },
+                data: { fileReadData: vm.fileReadData, datasetName: vm.datasetName },
             })
-            .then(function(response){
-                console.log("fileDataInsert - response :", response.data);
-                alert("파일 데이터 등록에 성공했습니다!");
-                // 데이터 초기화
-                this.resetForm();
-            })
-            .catch(function(error){
-                console.log(" - error :", error);
-                alert("파일 데이터 등록에 실패하였습니다!");
-            })
+                .then(function (response) {
+                    console.log("fileDataInsert - response :", response.data);
+                    alert("파일 데이터 등록에 성공했습니다!");
+                    // 데이터 초기화
+                    this.resetForm();
+                })
+                .catch(function (error) {
+                    console.log(" - error :", error);
+                    alert("파일 데이터 등록에 실패하였습니다!");
+                })
         },
         resetForm() {
             this.fileReadData = [];
@@ -117,7 +122,7 @@ export default {
 <style scoped>
 .admin-wrap {
     width: 100%;
-    height:100%;
+    height: 100%;
     background-color: white;
     flex-wrap: nowrap;
 }
@@ -178,7 +183,4 @@ export default {
 .reset-btn:hover {
     background-color: #d0d4d8;
 }
-
-
-
 </style>

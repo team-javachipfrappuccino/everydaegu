@@ -243,7 +243,6 @@ details summary::marker {
 
 .admin-area-box{
   width: 100%;
-  border: 1px solid red;
   height: 100%;
   border-radius: 1rem;
   background-color: #f8f8f8;
@@ -256,19 +255,20 @@ details summary::marker {
 }
 
 .table-section {
-  width: 100%;
-  border: 1px solid red;
   height: calc(100% - 150px);
   overflow-y: scroll;
   word-break: normal;
+  
 }
 
 .file-data-list {
   width: 100%;
-  border: 1px solid red;
   border-collapse: collapse;
 }
-
+.file-data-list tr{
+  background-color: white;
+  width: 100px !important;
+}
 .file-data-list th, .file-data-list td {
   padding: 8px 12px;
   border: 1px solid #ddd;
