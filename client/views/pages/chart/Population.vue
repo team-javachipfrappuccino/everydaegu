@@ -44,7 +44,7 @@
             </div>
             <div class="column">
                 <div class="column">
-                <h2>f대구 외국인 인구변화</h2>
+                <h2>대구 외국인 인구변화</h2>
                 <div id="chartdiv8" class="chartdiv"></div>
             </div>
             </div>
