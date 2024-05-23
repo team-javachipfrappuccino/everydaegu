@@ -1,29 +1,39 @@
 <template>
   <div class="chart-container-wrapper">
-    <div class="chart-column" style="padding-left: 100px;">
-      <h2 style="padding-left: 300px; padding-top: 30px;">대기 수질 환경오염배출사업장 현황</h2>
+    <div class="chart-column">
+      <h2 class="chart-title">대기 수질 환경오염배출사업장 현황</h2>
       <div id="chartdiv1" class="chart-container"></div>
     </div>
-    <div class="chart-column" style="padding-right: 100px;">
-      <h2 style="padding-left: 300px; padding-top: 30px;">2023 월별 폐기물 처리량 (대)</h2>
+    <div class="chart-column">
+      <h2 class="chart-title">2023 월별 폐기물 처리량 (대)</h2>
       <div id="chartdiv2" class="chart-container"></div>
     </div>
   </div>
   <div class="chart-column2">
-    <h2 style="padding-left: 800px; padding-top: 30px;">연도별 폐기물 반입현황 (대)</h2>
+    <h2 class="chart-title-center">연도별 폐기물 반입현황 (대)</h2>
     <div class="dropdown-wrapper">
       <div class="dropdown-and-amount">
-        <select @change="updateChart" v-model="selectedMonth">
+        <select @change="updateChart" v-model="selectedMonth" class="styled-select">
           <option v-for="month in months" :key="month">{{ month }}</option>
         </select>
-        <button @click="showTrashCanStatus">대구 지역별 쓰레기통 설치 개수</button>
-        <div v-if="showTrashCanInfo" class="trash-can-info">
-          <p>남구: 67개</p>
-          <p>북구: 8개</p>
-          <p>서구: 15개</p>
-          <p>달서구: 15개</p>
-          <p>달성군: 86개</p>
-        </div>
+        <button @click="showTrashCanStatus" class="styled-button">대구 지역별 쓰레기통 설치 개수</button>
+      </div>
+      <div v-if="showTrashCanInfo" class="trash-can-info">
+        <table class="trash-can-table">
+          <thead>
+            <tr>
+              <th>지역</th>
+              <th>개수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>남구</td><td>67개</td></tr>
+            <tr><td>북구</td><td>8개</td></tr>
+            <tr><td>서구</td><td>15개</td></tr>
+            <tr><td>달서구</td><td>15개</td></tr>
+            <tr><td>달성군</td><td>86개</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div id="chartdiv3" class="chart-container"></div>
@@ -308,22 +318,34 @@ export default {
 }
 
 .chart-column {
-  flex: auto;
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  border-radius: 10px;
 }
 
 .chart-container {
-  width: 90%;
-  height: 500px;
+  width: 100%;
+  height: 400px;
 }
 
-.chart-column2 {
-  width: 97%;
-  padding-top: 30px;
-  padding-left: 100px;
+.chart-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.chart-title-center {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 50px;
 }
 
 .dropdown-wrapper {
-  padding-left: 30px;
+  padding: 30px;
 }
 
 .dropdown-and-amount {
@@ -331,26 +353,50 @@ export default {
   align-items: center;
 }
 
-.dropdown-wrapper select {
-  padding: 7px;
-  font-size: 15px;
+.styled-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.dropdown-wrapper p {
+.styled-button {
   margin-left: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f3f3f3;
+  color: rgb(44, 41, 41);
+  border: 1px solid #b6afaf;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
-.dropdown-wrapper button {
-  margin-left: 20px;
-  padding: 7px 10px;
-  font-size: 15px;
+.styled-button:hover {
+  background-color: #d0d4da;
+  border-color: #d0d4da;
 }
 
 .trash-can-info {
   background-color: #f1f1f1;
   border: 1px solid #ccc;
   padding: 10px;
-  margin-left: 20px;
+  margin-top: 20px;
   border-radius: 5px;
+}
+
+.trash-can-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trash-can-table th, .trash-can-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.trash-can-table th {
+  background-color: #f2f2f2;
 }
 </style>

@@ -1,10 +1,8 @@
 <template>
-    <div>
       <Header ></Header>
        <div class="main-warp">
           <router-view/>
        </div>
-    </div>
  </template>
  
  <script>

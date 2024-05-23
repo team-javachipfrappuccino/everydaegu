@@ -1,18 +1,21 @@
 <template>
     <section class="layout">
         <div class="sidebar">
-            <details>
-                <summary>정보보기</summary>
+            <article class="main-wrap">
+                <h1>대구광역시 공공데이터 현황</h1>
                 <section class="main-button">
-                    <button @click="toggleCircle('population')">인구</button>
-                    <button @click="toggleCircle('welfare')">복지(공공센터)</button>
-                    <button @click="toggleCircle('safety')">안전(안전지수)</button>
-                    <button @click="toggleCircle('environment')">환경</button>
+                    <button class="btn" @click="toggleCircle('population')">인구</button>
+                    <button class="btn" @click="toggleCircle('welfare')">복지(공공센터)</button>
+                    <button class="btn" @click="toggleCircle('safety')">안전(안전지수)</button>
+                    <button class="btn" @click="toggleCircle('environment')">환경</button>
                 </section>
-            </details>
+                <button id="addBtn" v-show="showResetButton" @click="clearMap()">초기화</button>
+            </article>
+            
+          <article>
 
-            <summary v-if="sectionOption === 'population'">지역별 인구분포 보기</summary>
-            <section v-if="sectionOption === 'population'" class="main-button">
+            <summary class="main-area" v-if="sectionOption === 'population'">지역별 인구분포</summary>
+            <section v-if="sectionOption === 'population'" class="main-button button-area" >
                 <button @click="filterPopulation('북구')">북구</button>
                 <button @click="filterPopulation('중구')">중구</button>
                 <button @click="filterPopulation('남구')">남구</button>
@@ -23,8 +26,8 @@
                 <button @click="filterPopulation('달성군')">달성군</button>
             </section>
 
-            <summary v-if="sectionOption === 'welfare'">지역별 공공센터 보기</summary>
-            <section v-if="sectionOption === 'welfare'" class="main-button">
+            <summary class="main-area" v-if="sectionOption === 'welfare'">지역별 공공센터</summary>
+            <section v-if="sectionOption === 'welfare'" class="main-button button-area">
                 <button @click="filterDistrict('북구')">북구</button>
                 <button @click="filterDistrict('중구')">중구</button>
                 <button @click="filterDistrict('남구')">남구</button>
@@ -35,8 +38,8 @@
                 <button @click="filterDistrict('달성군')">달성군</button>
             </section>
 
-            <summary v-if="sectionOption === 'safety'">지역별 안전정보 보기</summary>
-            <section v-if="sectionOption === 'safety'" class="main-button">
+            <summary class="main-area" v-if="sectionOption === 'safety'">지역별 안전정보</summary>
+            <section v-if="sectionOption === 'safety'" class="main-button button-area">
                 <button @click="filterSafety('북구')">북구</button>
                 <button @click="filterSafety('중구')">중구</button>
                 <button @click="filterSafety('남구')">남구</button>
@@ -47,8 +50,8 @@
                 <button @click="filterSafety('달성군')">달성군</button>
             </section>
 
-            <summary v-if="sectionOption === 'safety' && safetyDistrict">카테고리별 안전지수 보기</summary>
-            <section v-if="sectionOption === 'safety' && safetyDistrict" class="safety-categories">
+            <summary class="main-area" v-if="sectionOption === 'safety' && safetyDistrict">카테고리별 안전지수</summary>
+            <section v-if="sectionOption === 'safety' && safetyDistrict" class="safety-categories button-area">
                 <button @click="filterSafetyCategory('safety_traffic')">교통사고</button>
                 <button @click="filterSafetyCategory('safety_fire')">화재</button>
                 <button @click="filterSafetyCategory('safety_crime')">범죄</button>
@@ -57,8 +60,8 @@
                 <button @click="filterSafetyCategory('safety_disease')">감염병</button>
             </section>
 
-            <summary v-if="sectionOption === 'environment'">지역별 환경정보 보기</summary>
-            <section v-if="sectionOption === 'environment'" class="main-button">
+            <summary class="main-area" v-if="sectionOption === 'environment'">지역별 환경정보</summary>
+            <section v-if="sectionOption === 'environment'" class="main-button button-area">
                 <button @click="filterEnvironment('북구')">북구</button>
                 <button @click="filterEnvironment('중구')">중구</button>
                 <button @click="filterEnvironment('남구')">남구</button>
@@ -68,8 +71,10 @@
                 <button @click="filterEnvironment('달서구')">달서구</button>
                 <button @click="filterEnvironment('달성군')">달성군</button>
             </section>
-            <button id="addBtn" @click="clearMap()">초기화</button>
 
+        </article>
+
+          
         </div>
         <div class="mapSection" ref="map"></div>
     </section>
@@ -106,6 +111,8 @@ import axios from "axios";
 export default {
     data() {
         return {
+            showResetButton: false,
+
             mapInstance: null,
             circles: [],
             dataList: [],
@@ -126,6 +133,14 @@ export default {
     },
 
     methods: {
+        toggleButton(type) {
+   
+        this.showResetButton = true;
+        },
+        clearMap() {
+
+        this.showResetButton = false;
+        },
         toggleCircle(itm) {
             console.log("선택한 값= ", itm);
             this.sectionOption = itm;
@@ -393,7 +408,7 @@ export default {
 <style scoped>
 .layout {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     text-align: center;
     display: grid;
@@ -422,6 +437,7 @@ details {
 
 summary {
     margin-bottom: 1rem;
+
 }
 
 .main-button,
@@ -430,23 +446,24 @@ summary {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #3333;
 }
 
 .main-button button,
 .safety-categories button {
     width: 100%;
     padding: 1rem 0;
-    border: 1px solid #3333;
+    border: 0px ;
     margin-right: 1rem;
     word-break: keep-all;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-family: 'PretendardGOV-Medium';
+
 }
 
 .legend {
     position: absolute;
-    top: 70px;
+    top: 1.7%;
     right: 20px;
     z-index: 1;
     background-color: #fff;

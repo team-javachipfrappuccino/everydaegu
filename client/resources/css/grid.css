@@ -1,0 +1,337 @@
+@charset "utf-8";
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+/* 
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+} */
+
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.no-space {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+
+.no-space>.gd,
+.no-space>[class*="gd-"] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.gd-1,
+.gd-2,
+.gd-3,
+.gd-4,
+.gd-5,
+.gd-6,
+.gd-7,
+.gd-8,
+.gd-9,
+.gd-10,
+.gd-11,
+.gd-12,
+.gd,
+.gd-auto,
+.gd-sm-1,
+.gd-sm-2,
+.gd-sm-3,
+.gd-sm-4,
+.gd-sm-5,
+.gd-sm-6,
+.gd-sm-7,
+.gd-sm-8,
+.gd-sm-9,
+.gd-sm-10,
+.gd-sm-11,
+.gd-sm-12,
+.gd-sm,
+.gd-sm-auto,
+.gd-md-1,
+.gd-md-2,
+.gd-md-3,
+.gd-md-4,
+.gd-md-5,
+.gd-md-6,
+.gd-md-7,
+.gd-md-8,
+.gd-md-9,
+.gd-md-10,
+.gd-md-11,
+.gd-md-12,
+.gd-md,
+.gd-md-auto,
+.gd-lg-1,
+.gd-lg-2,
+.gd-lg-3,
+.gd-lg-4,
+.gd-lg-5,
+.gd-lg-6,
+.gd-lg-7,
+.gd-lg-8,
+.gd-lg-9,
+.gd-lg-10,
+.gd-lg-11,
+.gd-lg-12,
+.gd-lg,
+.gd-lg-auto,
+.gd-xl-1,
+.gd-xl-2,
+.gd-xl-3,
+.gd-xl-4,
+.gd-xl-5,
+.gd-xl-6,
+.gd-xl-7,
+.gd-xl-8,
+.gd-xl-9,
+.gd-xl-10,
+.gd-xl-11,
+.gd-xl-12,
+.gd-xl,
+.gd-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+
+.gd {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.gd-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+}
+
+.gd-1 {
+    -ms-flex: 0 0 8.333333%;
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+}
+
+.gd-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+}
+
+.gd-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.gd-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+.gd-5 {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+}
+
+.gd-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.gd-7 {
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+}
+
+.gd-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.gd-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.gd-10 {
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+}
+
+.gd-11 {
+    -ms-flex: 0 0 91.666667%;
+    flex: 0 0 91.666667%;
+    max-width: 91.666667%;
+}
+
+.gd-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+
+.align-center {
+    align-items: center;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.flex-auto {
+    flex: 0 0 auto;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.flex2 {
+    flex: 2;
+}
+
+.flex3 {
+    flex: 3;
+}
+
+.flex4 {
+    flex: 4;
+}
+
+.flex5 {
+    flex: 5;
+}
+
+.flex6 {
+    flex: 6;
+}
+
+.flex7 {
+    flex: 7;
+}
+
+.flex8 {
+    flex: 8;
+}
+
+
+.gap1 {
+    gap: 1%;
+}
+
+.gap2 {
+    gap: 2%;
+}
+
+.gap3 {
+    gap: 3%;
+}
+
+.gap4 {
+    gap: 4%;
+}
+
+.gap5 {
+    gap: 5%;
+}
+
+.gap6 {
+    gap: 6%;
+}
+
+.gap7 {
+    gap: 7%;
+}
+
+.gap8 {
+    gap: 8%;
+}
+
+.gap9 {
+    gap: 9%;
+}
+
+.gap10 {
+    gap: 10%;
+}

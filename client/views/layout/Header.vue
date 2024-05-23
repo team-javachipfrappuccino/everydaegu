@@ -8,7 +8,7 @@
         <li><router-link to="/welfare.page">복지</router-link></li>
         <li><router-link to="/safety.page">안전</router-link></li>
         <li><router-link to="/environment.page">환경</router-link></li>
-        <li><router-link to="/environment.page">관리자</router-link></li>
+        <li><router-link to="/Admin.page">관리자</router-link></li>
         <!-- <li><a href="#">관리자</a></li> -->
       </ul>
     </div>
