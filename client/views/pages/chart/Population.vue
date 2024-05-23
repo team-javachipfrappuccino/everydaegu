@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h1 style="margin-top: 12px;">대구 인구밀도</h1>
+                <h2>대구 인구밀도</h2>
                 <div class="flex-container">
                     <div class="textbox1">국토교통부 "지적통계"의 행정구역별 국토면적을 이용하여 업데이트 하였음</div>
                     <div id="chartdiv7" class="chartdiv"></div>
@@ -169,7 +169,8 @@ export default {
             }));
 
             let yRenderer = am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 });
-            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer }));
+            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer,  min: 2000000,  // 최소값을 200만으로 설정합니다.
+    max: 2500000 }));
 
             let series = chart.series.push(am5xy.ColumnSeries.new(root, {
                 name: "Series 1",
@@ -230,7 +231,7 @@ export default {
             }));
 
             let yRenderer = am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 });
-            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer }));
+            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer, min: 1000000, max: 1300000 }));
 
             let maleSeries = chart.series.push(am5xy.ColumnSeries.new(root, {
                 name: "남자",
@@ -323,7 +324,7 @@ export default {
             }));
 
             let yRenderer = am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 });
-            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer }));
+            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer, min: 1000000, max: 1200000 }));
 
             let series = chart.series.push(am5xy.LineSeries.new(root, {
                 name: "Households",
@@ -442,7 +443,7 @@ export default {
             }));
 
             let yRenderer = am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 });
-            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer }));
+            let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer, min: 300000, max: 500000 }));
 
             let series = chart.series.push(am5xy.ColumnSeries.new(root, {
                 name: "Series 2",
@@ -600,7 +601,7 @@ export default {
         }));
 
         let yRenderer = am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 });
-        let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer }));
+        let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer,  min: 1000000, max: 1400000 }));
 
         let maleSeries = chart.series.push(am5xy.ColumnSeries.new(root, {
             name: "MALE",
