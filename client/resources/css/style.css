@@ -20,9 +20,31 @@
 
   font-style: normal;
 }
+
 @font-face {
   font-family: 'PretendardGOV-ExtraLight';
   src: url('../font/PretendardGOV-ExtraLight.ttf') format('woff');
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansTTFBold';
+  src: url('../font/GmarketSansTTFBold.ttf') format('woff');
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansTTFLight';
+  src: url('../font/GmarketSansTTFLight.ttf') format('woff');
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansTTFMedium';
+  src: url('../font/GmarketSansTTFMedium.ttf') format('woff');
 
   font-style: normal;
 }
@@ -31,7 +53,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "GmarketSansMedium", sans-serif;
+  font-family: 'PretendardGOV-Medium';
 }
 
 html,
@@ -50,6 +72,11 @@ body {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
 }
 
 /*특정 부분 스크롤바 없애기*/
@@ -90,6 +117,15 @@ a {
 
 .main-warp {
   width: 100vw;
+  height: calc(100% - 65px);
+  position: relative;
+  
+}
+
+.main-warp h1 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 
@@ -102,18 +138,20 @@ a {
 }
 
 
-.nav .home{
-  font-family: 'PretendardGOV-Bold';
+.nav .home {
+  font-family: 'GmarketSansTTFBold';
   font-size: 1.8rem;
   color: #f8f8f8;
 
 }
+
 .nav ul li {
   display: inline-block;
   margin-left: 3rem;
 
 }
-.nav ul li a{
+
+.nav ul li a {
   font-size: 1.3rem;
   font-family: 'PretendardGOV-Medium';
   color: #f8f8f8;
@@ -124,24 +162,20 @@ a {
 .btn {
   display: grid;
   place-items: center;
-  background: #e3edf7;
+  background: #e1edfa;
   padding: 1.4em;
-  border-radius: 10px;
-  box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
-	      -6px -6px 10px -1px rgba(255,255,255,0.7);
-  border: 1px solid rgba(0,0,0,0);
+  border-radius: 0.5rem;
+  
   cursor: pointer;
   transition: transform 0.5s;
 }
 
 .btn:hover {
-  box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
-	      inset -4px -4px 6px -1px rgba(255,255,255,0.7),
-	      -0.5px -0.5px 0px rgba(255,255,255,1),
-	      0.5px 0.5px 0px rgba(0,0,0,0.15),
-	      0px 12px 10px -10px rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.1);
-  transform: translateY(0.5em);
+  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+    0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+    0px 12px 10px -10px rgba(0, 0, 0, 0.05);
 }
 
 .btn svg {
@@ -151,4 +185,48 @@ a {
 .btn:hover svg {
   transform: scale(0.9);
   fill: #333333;
+}
+
+
+.sidebar {
+  height: calc(100% - 39px);
+  padding: 1rem;
+  overflow-y: scroll;
+ position: relative;
+
+}
+.sidebar::after{
+  content: '';
+  background: url(../img/logo.png)no-repeat;
+  width: 200px;
+  height: 30px;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* 기본 details-marker를 안보이도록 처리 */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::marker {
+  font-size: 0px;
+}
+
+.main-wrap summary {
+  font-family: 'GmarketSansTTFMedium';
+
+}
+
+.main-area {
+  padding: 1rem 0;
+  font-family: 'PretendardGOV-Medium';
+  font-size: 1.3rem;
+}
+
+.button-area button{
+  background-color: #efefef;
+  border-radius: 0.5rem;
 }
