@@ -16,7 +16,7 @@
         <select @change="updateChart" v-model="selectedMonth">
           <option v-for="month in months" :key="month">{{ month }}</option>
         </select>
-        <button @click="showTrashCanStatus">대구 지역별 쓰레기통 개수</button>
+        <button @click="showTrashCanStatus">대구 지역별 쓰레기통 설치 개수</button>
         <div v-if="showTrashCanInfo" class="trash-can-info">
           <p>남구: 67개</p>
           <p>북구: 8개</p>
