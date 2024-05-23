@@ -63,7 +63,7 @@ body {
   /* font-size: 10px; */
   box-sizing: border-box;
   color: #333;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'PretendardGOV-Medium';
 }
 
 body {
@@ -130,7 +130,7 @@ a {
 
 
 .nav {
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -139,7 +139,7 @@ a {
 
 
 .nav .home {
-  font-family: 'GmarketSansTTFBold';
+  font-family: 'PretendardGOV-Bold';
   font-size: 1.8rem;
   color: #f8f8f8;
 
@@ -279,3 +279,17 @@ details summary::marker {
   background-color: #f2f2f2;
 }
 
+.join{
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 120px 0;
+}
+
+.join-wrap{
+  width: 30%;
+  height: 30%;
+}

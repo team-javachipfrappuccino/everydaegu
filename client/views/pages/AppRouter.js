@@ -7,6 +7,7 @@ import Population from '../pages/chart/Population.vue';
 import Welfare from '../pages/chart/Welfare.vue';
 import Admin from '../pages/adm/Admin.vue';
 
+
 const routes = [
   /* 메인화면 */
   { path: "/", name: "Main", component: Main },

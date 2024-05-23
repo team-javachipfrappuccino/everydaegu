@@ -2,7 +2,7 @@
     <section class="layout">
         <div class="sidebar">
             <article class="main-wrap">
-                <h1>대구광역시 공공데이터 현황</h1>
+                <h1 class="mb30">대구광역시 공공데이터 현황</h1>
                 <section class="main-button">
                     <button class="btn" @click="toggleCircle('population')">인구</button>
                     <button class="btn" @click="toggleCircle('welfare')">복지(공공센터)</button>

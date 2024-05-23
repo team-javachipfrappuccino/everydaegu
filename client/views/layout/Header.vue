@@ -1,17 +1,10 @@
 <template>
-  <header>
-    <!-- 네비바 -->
-    <div class="nav">
-      <router-link class="home" to="/">everyDaegu</router-link>
-      <ul>
-        <li><router-link to="/population.page">인구</router-link></li>
-        <li><router-link to="/welfare.page">복지</router-link></li>
-        <li><router-link to="/safety.page">안전</router-link></li>
-        <li><router-link to="/environment.page">환경</router-link></li>
-        <li><router-link to="/Admin.page">관리자</router-link></li>
-        <!-- <li><a href="#">관리자</a></li> -->
-      </ul>
-    </div>
+  <header class="flex justify-end ">
+    <article>
+      <a href="/">최윤서 님</a>
+      <span class="mr10 ml10">|</span>
+      <a href="/">로그아웃</a>
+    </article>
   </header>
 </template>
 
@@ -29,3 +22,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+header{
+  padding: 0.2rem 2rem ;
+  background-color: rgb(67, 67, 67);
+}
+header a,header span{
+  color: white;
+}
+</style>
