@@ -1,3 +1,4 @@
 client/build/
+client/build/bundle.js
 server/logs/
 node_modules/
