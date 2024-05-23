@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <div class="file-upload-section">
-            <h3>엑셀파일 -> 데이터 테이블</h3>
+    <div class="admin-wrap flex justify-between ">
+        <div class="file-upload-section gd-3 no-space pt60 pl30 pr30 pb30">
+            <h1>파일등록</h1>
             <input type="file" id="input-file" @change="fileReadAPI" class="file-input">
             <input v-model="datasetName" placeholder="테이블 명을 입력해 주세요" class="text-input">
             <textarea v-model="tableDescription" placeholder="테이블 설명을 입력해 주세요" class="textarea-input"></textarea>
@@ -11,20 +11,27 @@
                 <button @click="selectFrom" class="btn reset-btn">보기</button>
             </div>
         </div>
-        <div v-if="fileReadData.length > 0" class="table-section">
-            <h3>미리보기</h3>
-            <table class="file-data-list">
-                <thead>
-                    <tr>
-                        <th v-for="(column, index) in fileReadData[0]" :key="index">{{ column }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(row, rowIndex) in fileReadData.slice(1)" :key="rowIndex">
-                        <td v-for="(cell, cellIndex) in row" :key="cellIndex">{{ cell }}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="admin-area  pt30 pr30 pb30">
+
+            <div class=" admin-area-box">
+                <p class="pd30">미리보기</p>
+    
+                <div v-if="fileReadData.length > 0" class="table-section pb30" >
+                    <table class="file-data-list">
+                        <thead>
+                            <tr>
+                                <th v-for="(column, index) in fileReadData[0]" :key="index">{{ column }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(row, rowIndex) in fileReadData.slice(1)" :key="rowIndex">
+                                <td v-for="(cell, cellIndex) in row" :key="cellIndex">{{ cell }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
     </div>
 </template>
@@ -108,17 +115,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.admin-wrap {
+    width: 100%;
+    height:100%;
+    background-color: white;
+    flex-wrap: nowrap;
 }
 
 .file-upload-section {
@@ -178,32 +179,6 @@ export default {
     background-color: #d0d4d8;
 }
 
-.table-section {
-    width: 100%;
-    margin-top: 20px;
-    overflow-x: auto;
-}
 
-.file-data-list {
-    width: 100%;
-    border-collapse: collapse;
-}
 
-.file-data-list th, .file-data-list td {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-.file-data-list th {
-    background-color: #f2f2f2;
-}
-
-.file-data-list tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.table-section h3 {
-    margin-bottom: 10px;
-}
 </style>

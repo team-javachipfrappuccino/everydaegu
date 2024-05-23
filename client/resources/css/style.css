@@ -117,7 +117,7 @@ a {
 
 .main-warp {
   width: 100vw;
-  height: calc(100% - 65px);
+  height: calc(100% - 70px);
   position: relative;
   
 }
@@ -230,3 +230,52 @@ details summary::marker {
   background-color: #efefef;
   border-radius: 0.5rem;
 }
+
+.admin-wrap h1{
+  font-size: 1.8rem;
+  font-family: 'PretendardGOV-Bold';
+  color: #333;
+}
+.admin-area{
+  width: 100%;
+  
+}
+
+.admin-area-box{
+  width: 100%;
+  border: 1px solid red;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: #f8f8f8;
+}
+.admin-area p{
+  font-family: 'PretendardGOV-Bold';
+  font-size: 1.5rem;
+  color: #333;
+
+}
+
+.table-section {
+  width: 100%;
+  border: 1px solid red;
+  height: calc(100% - 150px);
+  overflow-y: scroll;
+  word-break: normal;
+}
+
+.file-data-list {
+  width: 100%;
+  border: 1px solid red;
+  border-collapse: collapse;
+}
+
+.file-data-list th, .file-data-list td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.file-data-list th {
+  background-color: #f2f2f2;
+}
+

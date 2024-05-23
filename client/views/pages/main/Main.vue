@@ -463,7 +463,7 @@ summary {
 
 .legend {
     position: absolute;
-    top: 25%;
+    top: 1.7%;
     right: 20px;
     z-index: 1;
     background-color: #fff;
