@@ -6,10 +6,6 @@ import Environment from '../pages/chart/Environment.vue';
 import Population from '../pages/chart/Population.vue';
 import Welfare from '../pages/chart/Welfare.vue';
 
-
-
-
-
 const routes = [
   /* 메인화면 */
   { path: "/", name: "Main", component: Main },
