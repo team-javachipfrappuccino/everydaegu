@@ -43,12 +43,10 @@
                 </div>
             </div>
             <div class="column">
-                <h2 style="margin-top: 12px;">대구 외국인 인구변화</h2>
-                <div class="flex-container">
-                    <div class="textbox2">
-                        ffff</div>
-                    <div id="chartdiv8" class="chartdiv"></div>
-                </div>
+                <div class="column">
+                <h2>대구 외국인 인구변화</h2>
+                <div id="chartdiv8" class="chartdiv"></div>
+            </div>
             </div>
         </div>
     </div>
@@ -115,6 +113,8 @@ export default {
                 this.chartData.plus.push({ year: item.year, value: item.plus });
                 this.chartData.Elderly.push({ year: item.year, value: item.Elderly });
                 this.chartData.density.push({ year: item.year, value: item.density });
+                this.chartData.Register_men.push({ year: item.year, value: item.Register_men });
+                this.chartData.Register_women.push({ year: item.year, value: item.Register_women });
                 
           
         
@@ -130,6 +130,7 @@ export default {
             this.createElderlyChart("chartdiv5", this.chartData.Elderly, "value");
             this.createPieChart("chartdiv6", this.chartData.pieData);
             this.createdensityChart("chartdiv7", this.chartData.density, "value");
+            this.createRegisterGenderChart("chartdiv8", this.chartData.Register_men, this.chartData.Register_women);
            
             // 다른 차트도 유사하게 생성
         },
@@ -155,7 +156,7 @@ export default {
             xRenderer.labels.template.setAll({
               
                 centerY: am5.p50,
-                centerX: am5.p100,
+                centerX: am5.p50, 
                 paddingRight: 15
             });
             xRenderer.grid.template.setAll({ location: 1 });
@@ -216,7 +217,7 @@ export default {
             let xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30, minorGridEnabled: true });
             xRenderer.labels.template.setAll({
                 centerY: am5.p50,
-                centerX: am5.p100,
+                centerX: am5.p50, 
                 paddingRight: 15
             });
             xRenderer.grid.template.setAll({ location: 1 });
@@ -288,7 +289,6 @@ export default {
 
             root._logo.dispose();
         },
-
         createLineChart(chartDivId, chartData) {
             let root = am5.Root.new(chartDivId);
 
@@ -310,7 +310,7 @@ export default {
             let xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30, minorGridEnabled: true });
             xRenderer.labels.template.setAll({
                 centerY: am5.p50,
-                centerX: am5.p100,
+                centerX: am5.p50, 
                 paddingRight: 15
             });
             xRenderer.grid.template.setAll({ location: 1 });
@@ -367,7 +367,7 @@ export default {
     let xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30, minorGridEnabled: true });
     xRenderer.labels.template.setAll({
         centerY: am5.p50,
-        centerX: am5.p100,
+        centerX: am5.p50, 
         paddingRight: 15
     });
     xRenderer.grid.template.setAll({ location: 1 });
@@ -429,7 +429,7 @@ export default {
             xRenderer.labels.template.setAll({
               
                 centerY: am5.p50,
-                centerX: am5.p100,
+                centerX: am5.p50, 
                 paddingRight: 15
             });
             xRenderer.grid.template.setAll({ location: 1 });
@@ -566,7 +566,101 @@ export default {
 
             root._logo.dispose();
         },
-        
+        createRegisterGenderChart(chartDivId, maleData, femaleData) {
+    let root = am5.Root.new(chartDivId);
+
+    root.setThemes([am5themes_Animated.new(root)]);
+
+        let chart = root.container.children.push(am5xy.XYChart.new(root, {
+            panX: true,
+            panY: true,
+            wheelX: "panX",
+            wheelY: "zoomX",
+            pinchZoomX: true,
+            paddingLeft: 0,
+            paddingRight: 1
+        }));
+
+        let cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+        cursor.lineY.set("visible", false);
+
+        let xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30, minorGridEnabled: true });
+        xRenderer.labels.template.setAll({
+            centerY: am5.p50,
+            centerX: am5.p50,  // 라벨을 중앙으로 이동
+            paddingRight: 15
+        });
+        xRenderer.grid.template.setAll({ location: 1 });
+
+        let xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+            maxDeviation: 0.3,
+            categoryField: "year",
+            renderer: xRenderer,
+            tooltip: am5.Tooltip.new(root, {})
+        }));
+
+        let yRenderer = am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 });
+        let yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, { maxDeviation: 0.3, renderer: yRenderer }));
+
+        let maleSeries = chart.series.push(am5xy.ColumnSeries.new(root, {
+            name: "MALE",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueYField: "value",
+            sequencedInterpolation: true,
+            categoryXField: "year",
+            tooltip: am5.Tooltip.new(root, { labelText: "{valueY}" })
+        }));
+
+        let femaleSeries = chart.series.push(am5xy.ColumnSeries.new(root, {
+            name: "FEMALE",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueYField: "value",
+            sequencedInterpolation: true,
+            categoryXField: "year",
+            tooltip: am5.Tooltip.new(root, { labelText: "{valueY}" })
+        }));
+
+        maleSeries.columns.template.setAll({
+            cornerRadiusTL: 5,
+            cornerRadiusTR: 5,
+            strokeOpacity: 0,
+            fill: am5.color(0x0000ff)  // 파란색
+            
+        });
+
+        femaleSeries.columns.template.setAll({
+            cornerRadiusTL: 5,
+            cornerRadiusTR: 5,
+            strokeOpacity: 0,
+            fill: am5.color(0xff0000)  // 빨간색
+        });
+
+        xAxis.data.setAll(maleData.map((data, index) => ({
+            year: data.year,
+            maleValue: data.value,
+            femaleValue: femaleData[index].value
+        })));
+
+        maleSeries.data.setAll(maleData);
+        femaleSeries.data.setAll(femaleData);
+
+        maleSeries.appear(1000);
+        femaleSeries.appear(1000);
+        chart.appear(1000, 100);
+
+        // Legend 추가
+        let legend = chart.children.push(am5.Legend.new(root, {
+            centerX: am5.p50,
+            x: am5.p50
+        }));
+
+        legend.data.setAll([maleSeries, femaleSeries]);
+
+        root._logo.dispose();
+        },
+
     },
     mounted() {
         this.loadData();
