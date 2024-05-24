@@ -1,34 +1,32 @@
 <!-- Login.vue -->
 <template>
-    <div class=" flex-column justify-center align-center" style="height: 100%;">
 
-        <div class="flex justify-center  login">
-            <div class="login-area flex-column  align-center">
+    <div class="flex justify-center  login">
+        <div class="login-area flex-column  align-center">
 
-                <h1 class=" mb60" style="text-align: center;">EVERYDAEGU <br> LOGIN</h1>
-                <div class="login-box mb30">
-                    <div class="flex justify-between align-center mb30">
-                        <p>아이디 </p>
-                        <input type="text" placeholder="아이디를 입력하세요.">
-                    </div>
-                    <div class="flex justify-between align-center">
-                        <p>패스워드</p>
-                        <input type="password" placeholder="패스워드를 입력하세요.">
-                    </div>
+            <h1 class=" mb60" style="text-align: center;">EVERYDAEGU <br> LOGIN</h1>
+            <div class="login-box mb30">
+                <div class="flex justify-between align-center mb30">
+                    <p>아이디 </p>
+                    <input type="text" placeholder="아이디를 입력하세요.">
                 </div>
-                <div class="join-btn mb30">
-                    <button type="button" class="pr20" @click="joinOpen">회원가입</button>
-                    <button type="button">아이디/비밀번호 찾기</button>
+                <div class="flex justify-between align-center">
+                    <p>패스워드</p>
+                    <input type="password" placeholder="패스워드를 입력하세요.">
                 </div>
-                <button @click="login" class="login-btn">Login</button>
             </div>
-
-
+            <div class="join-btn mb30">
+                <button type="button" class="pr20" @click="joinOpen">회원가입</button>
+                <button type="button">아이디/비밀번호 찾기</button>
+            </div>
+            <button @click="login" class="login-btn">Login</button>
         </div>
-       
 
 
     </div>
+
+
+
 </template>
 
 <script>
@@ -36,15 +34,15 @@ export default {
     data() {
         return {
             openJoin: false,
-            openModal:true
+            openModal: true
         };
     },
     methods: {
         login() {
             this.$emit('login-success');
         },
-      
-      
+
+
     }
 };
 </script>
@@ -82,7 +80,7 @@ h1 {
 .login-area {
     width: 20%;
     height: 30%;
-    
+
 }
 
 .join-btn button {

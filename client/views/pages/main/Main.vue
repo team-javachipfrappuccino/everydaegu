@@ -112,9 +112,9 @@
                 <!-- 선택된 circle에 따라 다른 내용을 보여줄 수 있습니다 -->
                 <div v-if="sectionOption === 'population'">
                     <h1 class="mb20">대구광역시 인구 통계</h1>
-                    <div class="flex-column">
+                    <div class="flex-column chart-area ">
 
-                        <div class="mb20">
+                        <div class="mb20 chart-box">
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tbody>
                                     <tr>
@@ -151,9 +151,9 @@
                 </div>
                 <div v-if="sectionOption === 'welfare'">
                     <h1 class="mb20">대구광역시 복지 통계</h1>
-                    <div class="flex-column">
+                    <div class="flex-column justify-between">
 
-                        <div class="mb20">
+                        <div class="mb20 chart-box">
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tbody>
                                     <tr>
@@ -186,7 +186,7 @@
 
                     <div class="flex-column">
 
-                        <div class="mb20">
+                        <div class="mb20 chart-box">
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tbody>
                                     <tr>
@@ -222,7 +222,7 @@
 
                     <div class="flex-column">
 
-                        <div class="mb20">
+                        <div class="mb20 chart-box">
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tbody>
                                     <tr>
