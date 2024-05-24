@@ -82,6 +82,7 @@ h1 {
 .login-area {
     width: 20%;
     height: 30%;
+    
 }
 
 .join-btn button {

@@ -141,7 +141,10 @@
                             </table>
                         </div>
                         <!-- 그래프 -->
-                        <div></div>
+                        <div class="chart-img">
+                            <p class="mb20">인구통계 그래프</p>
+                            <img src="client/resources/img/chart.png" alt="">
+                        </div>
                     </div>
 
 
@@ -169,8 +172,11 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- 그래프 -->
-                        <div></div>
+                       <!-- 그래프 -->
+                       <div class="chart-img">
+                            <p class="mb20">복지통계 그래프</p>
+                            <img src="client/resources/img/chart.png" alt="">
+                        </div>
                     </div>
 
 
@@ -204,7 +210,10 @@
                             </table>
                         </div>
                         <!-- 그래프 -->
-                        <div></div>
+                        <div class="chart-img">
+                            <p class="mb20">안전통계 그래프</p>
+                            <img src="client/resources/img/chart.png" alt="">
+                        </div>
                     </div>
 
                 </div>
@@ -234,7 +243,10 @@
                             </table>
                         </div>
                         <!-- 그래프 -->
-                        <div></div>
+                        <div class="chart-img">
+                            <p class="mb20">환경통계 그래프</p>
+                            <img src="client/resources/img/chart.png" alt="">
+                        </div>
                     </div>
 
                 </div>

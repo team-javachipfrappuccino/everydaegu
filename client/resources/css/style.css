@@ -332,3 +332,13 @@ details summary::marker {
   font-size: 0.8rem;
   
 }
+
+.chart-img p{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.chart-img img{
+  width: 100%;
+  object-fit: contain;
+}
