@@ -408,6 +408,7 @@ export default {
                                     <ul>
                                         <li>안전지수 : ${safetyData[category]}</li>
                                         <li>경찰서 수 : ${safetyData.safety_police}</li>
+                                        <li>소방관 수 : ${safetyData.safety_firePeople}</li>
                                     </ul>
                                 </div>`,
                             });
