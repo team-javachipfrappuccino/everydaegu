@@ -11,147 +11,238 @@
                 </section>
                 <button id="addBtn" v-show="showResetButton" @click="clearMap()">초기화</button>
             </article>
-            
-          <article>
 
-            <summary class="main-area" v-if="sectionOption === 'population'">지역별 인구분포</summary>
-            <section v-if="sectionOption === 'population'" class="main-button button-area" >
-                <button @click="filterPopulation('북구')">북구</button>
-                <button @click="filterPopulation('중구')">중구</button>
-                <button @click="filterPopulation('남구')">남구</button>
-                <button @click="filterPopulation('동구')">동구</button>
-                <button @click="filterPopulation('서구')">서구</button>
-                <button @click="filterPopulation('수성구')">수성구</button>
-                <button @click="filterPopulation('달서구')">달서구</button>
-                <button @click="filterPopulation('달성군')">달성군</button>
-                <button @click="showAllPopulationCircles()">전체보기</button>
-            </section>
+            <article>
 
-            <summary class="main-area" v-if="sectionOption === 'welfare'">지역별 공공센터</summary>
-            <section v-if="sectionOption === 'welfare'" class="main-button button-area">
-                <button @click="filterDistrict('북구')">북구</button>
-                <button @click="filterDistrict('중구')">중구</button>
-                <button @click="filterDistrict('남구')">남구</button>
-                <button @click="filterDistrict('동구')">동구</button>
-                <button @click="filterDistrict('서구')">서구</button>
-                <button @click="filterDistrict('수성구')">수성구</button>
-                <button @click="filterDistrict('달서구')">달서구</button>
-                <button @click="filterDistrict('달성군')">달성군</button>
-                <button @click="showAllWelfareCenters()">전체보기</button>
-            </section>
+                <summary class="main-area" v-if="sectionOption === 'population'">지역별 인구분포</summary>
+                <section v-if="sectionOption === 'population'" class="main-button button-area">
+                    <button @click="filterPopulation('북구')">북구</button>
+                    <button @click="filterPopulation('중구')">중구</button>
+                    <button @click="filterPopulation('남구')">남구</button>
+                    <button @click="filterPopulation('동구')">동구</button>
+                    <button @click="filterPopulation('서구')">서구</button>
+                    <button @click="filterPopulation('수성구')">수성구</button>
+                    <button @click="filterPopulation('달서구')">달서구</button>
+                    <button @click="filterPopulation('달성군')">달성군</button>
+                    <button @click="showAllPopulationCircles()">전체보기</button>
+                </section>
 
-            <summary class="main-area" v-if="sectionOption === 'safety'">지역별 안전정보</summary>
-            <section v-if="sectionOption === 'safety'" class="main-button button-area">
-                <button @click="filterSafety('북구')">북구</button>
-                <button @click="filterSafety('중구')">중구</button>
-                <button @click="filterSafety('남구')">남구</button>
-                <button @click="filterSafety('동구')">동구</button>
-                <button @click="filterSafety('서구')">서구</button>
-                <button @click="filterSafety('수성구')">수성구</button>
-                <button @click="filterSafety('달서구')">달서구</button>
-                <button @click="filterSafety('달성군')">달성군</button>
-                <button @click="filterSafety('전체보기')">전체보기</button>
-            </section>
+                <summary class="main-area" v-if="sectionOption === 'welfare'">지역별 공공센터</summary>
+                <section v-if="sectionOption === 'welfare'" class="main-button button-area">
+                    <button @click="filterDistrict('북구')">북구</button>
+                    <button @click="filterDistrict('중구')">중구</button>
+                    <button @click="filterDistrict('남구')">남구</button>
+                    <button @click="filterDistrict('동구')">동구</button>
+                    <button @click="filterDistrict('서구')">서구</button>
+                    <button @click="filterDistrict('수성구')">수성구</button>
+                    <button @click="filterDistrict('달서구')">달서구</button>
+                    <button @click="filterDistrict('달성군')">달성군</button>
+                    <button @click="showAllWelfareCenters()">전체보기</button>
+                </section>
 
-            <summary class="main-area" v-if="sectionOption === 'safety' && safetyDistrict">카테고리별 안전지수</summary>
-            <section v-if="sectionOption === 'safety' && safetyDistrict" class="safety-categories button-area">
-                <button @click="filterSafetyCategory('safety_traffic')">교통사고</button>
-                <button @click="filterSafetyCategory('safety_fire')">화재</button>
-                <button @click="filterSafetyCategory('safety_crime')">범죄</button>
-                <button @click="filterSafetyCategory('safety_life')">생활안전</button>
-                <button @click="filterSafetyCategory('safety_suicide')">자살</button>
-                <button @click="filterSafetyCategory('safety_disease')">감염병</button>
-            </section>
+                <summary class="main-area" v-if="sectionOption === 'safety'">지역별 안전정보</summary>
+                <section v-if="sectionOption === 'safety'" class="main-button button-area">
+                    <button @click="filterSafety('북구')">북구</button>
+                    <button @click="filterSafety('중구')">중구</button>
+                    <button @click="filterSafety('남구')">남구</button>
+                    <button @click="filterSafety('동구')">동구</button>
+                    <button @click="filterSafety('서구')">서구</button>
+                    <button @click="filterSafety('수성구')">수성구</button>
+                    <button @click="filterSafety('달서구')">달서구</button>
+                    <button @click="filterSafety('달성군')">달성군</button>
+                    <button @click="filterSafety('전체보기')">전체보기</button>
+                </section>
 
-            <summary class="main-area" v-if="sectionOption === 'environment'">지역별 환경정보</summary>
-            <section v-if="sectionOption === 'environment'" class="main-button button-area">
-                <button @click="filterEnvironment('북구')">북구</button>
-                <button @click="filterEnvironment('중구')">중구</button>
-                <button @click="filterEnvironment('남구')">남구</button>
-                <button @click="filterEnvironment('동구')">동구</button>
-                <button @click="filterEnvironment('서구')">서구</button>
-                <button @click="filterEnvironment('수성구')">수성구</button>
-                <button @click="filterEnvironment('달서구')">달서구</button>
-                <button @click="filterEnvironment('달성군')">달성군</button>
-                <button @click="showAllEnvironmentCircles()">전체보기</button>
-            </section>
+                <summary class="main-area" v-if="sectionOption === 'safety' && safetyDistrict">카테고리별 안전지수</summary>
+                <section v-if="sectionOption === 'safety' && safetyDistrict" class="safety-categories button-area">
+                    <button @click="filterSafetyCategory('safety_traffic')">교통사고</button>
+                    <button @click="filterSafetyCategory('safety_fire')">화재</button>
+                    <button @click="filterSafetyCategory('safety_crime')">범죄</button>
+                    <button @click="filterSafetyCategory('safety_life')">생활안전</button>
+                    <button @click="filterSafetyCategory('safety_suicide')">자살</button>
+                    <button @click="filterSafetyCategory('safety_disease')">감염병</button>
+                </section>
 
-        </article>
+                <summary class="main-area" v-if="sectionOption === 'environment'">지역별 환경정보</summary>
+                <section v-if="sectionOption === 'environment'" class="main-button button-area">
+                    <button @click="filterEnvironment('북구')">북구</button>
+                    <button @click="filterEnvironment('중구')">중구</button>
+                    <button @click="filterEnvironment('남구')">남구</button>
+                    <button @click="filterEnvironment('동구')">동구</button>
+                    <button @click="filterEnvironment('서구')">서구</button>
+                    <button @click="filterEnvironment('수성구')">수성구</button>
+                    <button @click="filterEnvironment('달서구')">달서구</button>
+                    <button @click="filterEnvironment('달성군')">달성군</button>
+                    <button @click="showAllEnvironmentCircles()">전체보기</button>
+                </section>
 
-          
+            </article>
+
+
         </div>
-        <div class="mapSection" ref="map"></div>
+        <div class="mapSection" ref="map">
+
+            <!-- 안전(안전지수) 버튼을 누르면 표시되는 범례 -->
+            <section v-if="sectionOption === 'safety' && safetyDistrict" class="legend">
+                <h3>안전지수 범례</h3>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #1F77B4;"></span>
+                    <span class="legend-label">1단계</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #2CA02C;"></span>
+                    <span class="legend-label">2단계</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #FFD700;"></span>
+                    <span class="legend-label">3단계</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #FFA500;"></span>
+                    <span class="legend-label">4단계</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #FF0000;"></span>
+                    <span class="legend-label">5단계</span>
+                </div>
+                <div>* 높을수록 위험</div>
+            </section>
+
+            <section v-if="sectionOption" class="rightSideBar">
+                <!-- 선택된 circle에 따라 다른 내용을 보여줄 수 있습니다 -->
+                <div v-if="sectionOption === 'population'">
+                    <h1 class="mb20">대구광역시 인구 통계</h1>
+                    <div class="flex-column">
+
+                        <div class="mb20">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <th>전체 인구수</th>
+                                        <td>2,363,285 명</td>
+                                    </tr>
+                                    <tr>
+                                        <th>인구 증감률</th>
+                                        <td>5.27%</td>
+                                    </tr>
+                                    <tr>
+                                        <th>노인인구 비율</th>
+                                        <td>20.1%</td>
+                                    </tr>
+                                    <tr>
+                                        <th>남여 비율(남/여)</th>
+                                        <td>0.96%</td>
+                                    </tr>
+                                    <tr>
+                                        <th>외국인 인구 비율</th>
+                                        <td> 3.7%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 그래프 -->
+                        <div></div>
+                    </div>
+
+
+                </div>
+                <div v-if="sectionOption === 'welfare'">
+                    <h1 class="mb20">대구광역시 복지 통계</h1>
+                    <div class="flex-column">
+
+                        <div class="mb20">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <th>공공센터</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>노인 요양시설 수</th>
+                                        <td>273개</td>
+                                    </tr>
+                                    <tr>
+                                        <th>아동 복지시설 수</th>
+                                        <td>202개</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 그래프 -->
+                        <div></div>
+                    </div>
+
+
+                </div>
+                <div v-if="sectionOption === 'safety'">
+                    <h1 class="mb20">대구광역시 안전 통계</h1>
+
+                    <div class="flex-column">
+
+                        <div class="mb20">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <th>경찰서 수</th>
+                                        <td>72개</td>
+                                    </tr>
+                                    <tr>
+                                        <th>소방서 수</th>
+                                        <td>9개</td>
+                                    </tr>
+                                    <tr>
+                                        <th>범죄 발생 건수</th>
+                                        <td>580,323건</td>
+                                    </tr>
+                                    <tr>
+                                        <th>사고 발생 건수(화재,교통)</th>
+                                        <td>8636건</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 그래프 -->
+                        <div></div>
+                    </div>
+
+                </div>
+                <div v-if="sectionOption === 'environment'">
+                    <h1 class="mb20">대구광역시 환경 통계</h1>
+
+                    <div class="flex-column">
+
+                        <div class="mb20">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <th>환경오염배출 사업장 수</th>
+                                        <td>2094개</td>
+                                    </tr>
+                                    <tr>
+                                        <th>연간 폐기물 배출량</th>
+                                        <td>1,185,000톤</td>
+                                    </tr>
+                                    <tr>
+                                        <th>월별 폐기물 처리량</th>
+                                        <td>58,368톤</td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 그래프 -->
+                        <div></div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
     </section>
-    <!-- 안전(안전지수) 버튼을 누르면 표시되는 범례 -->
-    <section v-if="sectionOption === 'safety' && safetyDistrict" class="legend">
-        <h3>안전지수 범례</h3>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #1F77B4;"></span>
-            <span class="legend-label">1단계</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #2CA02C;"></span>
-            <span class="legend-label">2단계</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #FFD700;"></span>
-            <span class="legend-label">3단계</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #FFA500;"></span>
-            <span class="legend-label">4단계</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #FF0000;"></span>
-            <span class="legend-label">5단계</span>
-        </div>
-        <div>* 높을수록 위험</div>
-    </section>
 
-    <section v-if="sectionOption" class="rightSideBar">
-      <!-- 선택된 circle에 따라 다른 내용을 보여줄 수 있습니다 -->
-      <div v-if="sectionOption === 'population'">
-        <h1 class="mb-30">대구광역시 인구 통계</h1>
-        <br>
-        <p>전체 인구수 : 2,363,285 명</p>
-        <p>인구 증감률 : 5.27%</p>
-        <p>노인인구 비율 : 20.1%</p>
-        <p>남여 비율(남/여) : 0.96%</p>
-        <p>외국인 인구 비율 : 3.7%</p>
-        <div>지역별 인구수?비율 그래프 넣을 공간</div>
-    </div>
-      <div v-if="sectionOption === 'welfare'">
-        <h1 class="mb-30">대구광역시 복지 통계</h1>
-        <br>
-        <p>공공센터 수 :</p>
-        <p>노인 요양시설 수 : 273개</p>
-        <p>아동 복지시설 수 : 202개</p>
-        <p>그래프</p>
-        
-    </div>
-      <div v-if="sectionOption === 'safety'">
-        <h1 class="mb-30">대구광역시 안전 통계</h1>
-        <br>
-        <p>경찰서 수 : 72개</p>
-        <p>소방서 수 : 9개</p>
-        <p>범죄 발생 건수 : 580,323건</p>
-        <p>사고 발생 건수(화재,교통) : 8636건</p>
-        <p>그래프</p>
-        
-    </div>
-      <div v-if="sectionOption === 'environment'">
-        <h1 class="mb-30">대구광역시 환경 통계</h1>
-        <br>
-        <p>환경오염배출 사업장 수 : 2094개</p>
-        <p>연간 폐기물 배출량 : 1,185,000톤</p>
-        <p>월별 폐기물 처리량 : 58,368톤</p>
-        <p>그래프</p>
 
-        
-    </div>
-    </section>
-
-    
 
 </template>
 
@@ -184,11 +275,11 @@ export default {
 
     methods: {
         toggleButton(type) {
-        this.showResetButton = true;
+            this.showResetButton = true;
         },
         clearMap() {
 
-        this.showResetButton = false;
+            this.showResetButton = false;
         },
         toggleCircle(itm) {
             console.log("선택한 값= ", itm);
@@ -294,41 +385,41 @@ export default {
                 },
                 data: {},
             })
-            .then(function (response) {
-                console.log("welfareData - response :", response.data);
-                vm.dataList = response.data;
+                .then(function (response) {
+                    console.log("welfareData - response :", response.data);
+                    vm.dataList = response.data;
 
-                vm.dataList.forEach(center => {
-                    const position = new kakao.maps.LatLng(center.public_center_latitude, center.public_center_longitude);
-                    const marker = new kakao.maps.Marker({ position });
-                    marker.setMap(vm.mapInstance);
+                    vm.dataList.forEach(center => {
+                        const position = new kakao.maps.LatLng(center.public_center_latitude, center.public_center_longitude);
+                        const marker = new kakao.maps.Marker({ position });
+                        marker.setMap(vm.mapInstance);
 
-                    const infoWindow = new kakao.maps.InfoWindow({
-                        content: `<div style="padding: 10px; margin-bottom: 15px"><strong>${center.public_center_name}</strong><hr><ul><li>${center.public_center_add}</li></ul></div>`
+                        const infoWindow = new kakao.maps.InfoWindow({
+                            content: `<div style="padding: 10px; margin-bottom: 15px"><strong>${center.public_center_name}</strong><hr><ul><li>${center.public_center_add}</li></ul></div>`
+                        });
+
+                        // 마커에 클릭 이벤트 추가
+                        kakao.maps.event.addListener(marker, 'click', function () {
+                            // 다른 인포윈도우 닫기
+                            if (vm.currentInfoWindow) {
+                                vm.currentInfoWindow.close();
+                            }
+                            // 클릭한 마커의 인포윈도우 열기
+                            infoWindow.open(vm.mapInstance, marker);
+                            // 현재 열려 있는 인포윈도우 저장
+                            vm.currentInfoWindow = infoWindow;
+                        });
+
+                        vm.circles.push({ marker });
                     });
-
-                    // 마커에 클릭 이벤트 추가
-                    kakao.maps.event.addListener(marker, 'click', function () {
-                        // 다른 인포윈도우 닫기
-                        if (vm.currentInfoWindow) {
-                            vm.currentInfoWindow.close();
-                        }
-                        // 클릭한 마커의 인포윈도우 열기
-                        infoWindow.open(vm.mapInstance, marker);
-                        // 현재 열려 있는 인포윈도우 저장
-                        vm.currentInfoWindow = infoWindow;
-                    });
-
-                    vm.circles.push({ marker });
+                })
+                .catch(function (error) {
+                    console.log("welfareData - error :", error);
+                    alert("공공센터 데이터 조회에 오류가 발생했습니다.");
                 });
-            })
-            .catch(function (error) {
-                console.log("welfareData - error :", error);
-                alert("공공센터 데이터 조회에 오류가 발생했습니다.");
-            });
         },
-    
-        
+
+
 
         filterDistrict(district) {
             console.log("필터링할 구/군: ", district);
@@ -438,27 +529,27 @@ export default {
                 },
                 data: { district: '전체보기' }, // 전체 지역에 대한 데이터 요청
             })
-            .then(function (response) {
-                console.log("environmentData - response :", response.data);
+                .then(function (response) {
+                    console.log("environmentData - response :", response.data);
 
-                // 가져온 데이터를 이용하여 지도에 원과 인포윈도우 표시
-                response.data.forEach(envData => {
-                    const position = new kakao.maps.LatLng(envData.env_latitude, envData.env_longitude);
-                    const circleOptions = {
-                        center: position,
-                        radius: 1500, // 반지름 설정
-                        strokeWeight: 1,
-                        strokeColor: '#333',
-                        strokeOpacity: 0.7,
-                        fillColor: '#1F77B4', // 파랑색
-                        fillOpacity: 0.5
-                    };
-                    const circle = new kakao.maps.Circle(circleOptions);
+                    // 가져온 데이터를 이용하여 지도에 원과 인포윈도우 표시
+                    response.data.forEach(envData => {
+                        const position = new kakao.maps.LatLng(envData.env_latitude, envData.env_longitude);
+                        const circleOptions = {
+                            center: position,
+                            radius: 1500, // 반지름 설정
+                            strokeWeight: 1,
+                            strokeColor: '#333',
+                            strokeOpacity: 0.7,
+                            fillColor: '#1F77B4', // 파랑색
+                            fillOpacity: 0.5
+                        };
+                        const circle = new kakao.maps.Circle(circleOptions);
 
-                    // 인포윈도우 생성 및 표시
-                    const infoWindow = new kakao.maps.InfoWindow({
-                        position: position,
-                        content: `<div style="padding: 10px; margin-bottom: 15px; text-align: center;">
+                        // 인포윈도우 생성 및 표시
+                        const infoWindow = new kakao.maps.InfoWindow({
+                            position: position,
+                            content: `<div style="padding: 10px; margin-bottom: 15px; text-align: center;">
                             <strong>${envData.env_region}</strong>
                             <hr>
                             <ul>
@@ -466,22 +557,22 @@ export default {
                                 <li>폐기물 배출량(연간/톤): ${envData.env_waste}</li>
                             </ul>
                         </div>`,
-                    });
-                    infoWindow.open(vm.mapInstance); // 인포윈도우 열기
+                        });
+                        infoWindow.open(vm.mapInstance); // 인포윈도우 열기
 
-                    // 클릭 이벤트 리스너 추가
-                    kakao.maps.event.addListener(circle, 'click', function () {
-                        infoWindow.close(); // 클릭한 원을 다시 클릭할 때 인포윈도우가 닫히지 않도록 인포윈도우를 닫음
-                    });
+                        // 클릭 이벤트 리스너 추가
+                        kakao.maps.event.addListener(circle, 'click', function () {
+                            infoWindow.close(); // 클릭한 원을 다시 클릭할 때 인포윈도우가 닫히지 않도록 인포윈도우를 닫음
+                        });
 
-                    circle.setMap(vm.mapInstance); // 지도에 원 표시
-                    vm.circles.push({ circle }); // 원을 circles 배열에 추가
+                        circle.setMap(vm.mapInstance); // 지도에 원 표시
+                        vm.circles.push({ circle }); // 원을 circles 배열에 추가
+                    });
+                })
+                .catch(function (error) {
+                    console.log("environmentData - error :", error);
+                    alert("환경 데이터 조회에 오류가 발생했습니다.");
                 });
-            })
-            .catch(function (error) {
-                console.log("environmentData - error :", error);
-                alert("환경 데이터 조회에 오류가 발생했습니다.");
-            });
         },
 
 
@@ -610,6 +701,7 @@ export default {
     display: grid;
     grid-template-columns: 20% 80%;
     gap: 8px;
+    position: relative;
 }
 
 .sidebar {
@@ -648,7 +740,7 @@ summary {
 .safety-categories button {
     width: 100%;
     padding: 1rem 0;
-    border: 0px ;
+    border: 0px;
     margin-right: 1rem;
     word-break: keep-all;
     cursor: pointer;
@@ -659,9 +751,9 @@ summary {
 
 .legend {
     position: absolute;
-    top: 7%;
-    right: 73%;
-    z-index: 1;
+    top: 2%;
+    left: 1%;
+    z-index: 111111;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
@@ -689,18 +781,5 @@ summary {
 
 .legend-label {
     font-size: 14px;
-}
-
-.rightSideBar {
-    position: absolute;
-    top: 5.9%;
-    right: 0%;
-    height: 68%;
-    z-index: 1;
-    background-color: #fff;
-    padding: 6.5%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>

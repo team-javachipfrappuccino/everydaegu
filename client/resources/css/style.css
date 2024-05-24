@@ -293,3 +293,42 @@ details summary::marker {
   width: 30%;
   height: 30%;
 }
+
+.main-warp{
+  position: relative;
+}
+
+.rightSideBar {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 20%;
+  height: 90%;
+  z-index: 111111;
+  padding: 1.5rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.rightSideBar table{
+  border-bottom: 1px solid #c9c9c9;
+  border-left: 1px solid #c9c9c9;
+  border-right: 1px solid #c9c9c9;
+}
+.rightSideBar table th{
+  background-color: #e1f0fa;
+  text-align: left;
+  color: #333;
+  padding: 0.5rem ;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-top: 1px solid #c9c9c9;
+}
+.rightSideBar table td{
+  border-top: 1px solid #c9c9c9;
+  border-left: 1px solid #c9c9c9;
+  padding: 0.5rem ;
+  font-size: 0.8rem;
+  
+}
